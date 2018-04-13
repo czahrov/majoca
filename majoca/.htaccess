@@ -1,0 +1,6 @@
+# przekierowanie na domenę główną http://majoca.pl
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^(www\.)?(babymajoca|majoka|babymajoka)\.pl$ [NC]
+RewriteRule (.*) http://majoca.pl/$1 [R,L]
+RewriteCond %{HTTP_HOST} ^www\.majoca\.pl$ [NC]
+RewriteRule (.*) http://majoca.pl/$1 [R,L]
