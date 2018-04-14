@@ -4,3 +4,8 @@ RewriteCond %{HTTP_HOST} ^(www\.)?(babymajoca|majoka|babymajoka)\.pl$ [NC]
 RewriteRule (.*) http://majoca.pl/$1 [R,L]
 RewriteCond %{HTTP_HOST} ^www\.majoca\.pl$ [NC]
 RewriteRule (.*) http://majoca.pl/$1 [R,L]
+
+# cache buster
+<FilesMatch ".(js|css)$">
+	Header unset Cache-Control
+</FilesMatch>
