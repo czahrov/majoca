@@ -34,6 +34,8 @@
 Imię: %s
 Nazwisko: %s
 Adres: %s %s, %s %s
+Wiadomość:
+> %s
 
 Dane kontaktowe
 ---
@@ -53,6 +55,7 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 			$_POST['budynek'],
 			$_POST['kod'],
 			$_POST['miejscowosc'],
+			$_POST['wiadomość'],
 			$_POST['telefon'],
 			$_POST['email'],
 			$_POST['kolor'],
@@ -82,6 +85,9 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 		
 	}
 	
+	$infix = DMODE?( '' ):( '.min' );
+	$buster = DMODE?( sprintf( '?v=%u', time() ) ):( '' );
+	
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -101,8 +107,8 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 		<!-- Plugin CSS -->
 		<link rel="stylesheet" href="device-mockups/device-mockups.min.css">
 		<!-- Custom styles for this template -->
-		<link href="css/majoca.css" rel="stylesheet">
-		<link href="css/override.css" rel="stylesheet">
+		<link href="<?php printf( 'css/majoca%s.css%s', $infix, $buster ); ?>" rel="stylesheet">
+		<link href="<?php printf( 'css/override%s.css%s', $infix, $buster ); ?>" rel="stylesheet">
 	</head>
 	<body id="page-top">
 		<div id='popup' class="">
@@ -129,17 +135,18 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 						<input class='' type='text' name='kod' placeholder='Kod pocztowy' pattern='^\d{2}-\d{3}$' title='np: 23-456' required>
 						<input class='' type='text' name='ulica' placeholder='Ulica' required>
 						<input class='' type='text' name='budynek' placeholder='Numer budynku' required>
+						<textarea class='' name='wiadomość' placeholder='Napisz wiadomość'></textarea>
 						
 						<div class='bold'>
 							Informacje o produkcie
 						</div>
 						<select name='kolor' required>
 							<option disabled selected>wybierz kolor</option>
-							<option description='92% mikromodal 8%, elastan Micromodal'>Deep navy</option>
+							<option description='92% Micromodal, 8% elastan'>Deep navy</option>
 							<option description='92% wiskoza, 8% elastan'>Navy sailor</option>
 							<option description='92% wiskoza, 8% elastan'>Black and white</option>
 							<option description='92% wiskoza, 8% elastan'>Pink rose</option>
-							<option description='92% mikromodal 8%, elastan Micromodal'>Strong white</option>
+							<option description='92% Micromodal, 8%elastan'>Strong white</option>
 							
 						</select>
 						<div class='description'>---</div>
@@ -221,16 +228,34 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 						<div class='view'>
 							<?php
 								$files = glob( "img/slider/*.*" );
-								// print_r( $files );
+								
+								if( DMODE ){
+									echo "<!--<div>";
+									print_r( $files );
+									echo "</div>-->";
+									
+								}
+								
 								foreach( $files as $slide ):
-								 ?>
-							<div class="item product-img" style="background-image: url( <?php echo $slide; ?> );"></div>
+								?>
+							<div class="item product-img" style="background-image: url(' <?php echo $slide; ?> ');">
+								<div class='name'>
+									<?php echo basename( $slide, ".png" ); ?>
+								</div>
+								
+							</div>
 							<?php endforeach; ?>
 						</div>
 					</div>
 				</div>
 			</div>
 		</header>
+		<div class='slogan'>
+			<div class='container'>
+				Jeden produkt a tak wiele możliwości
+			</div>
+			
+		</div>
 		<section class="features" id="o-produkcie">
 			<div class="white-bg"></div>
 			<div class="container">
@@ -238,6 +263,14 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 					<div class="col-lg-7 ">
 						<div class="header-content">
 							<h2 class="section-heading">O produkcie</h2>
+							<div class='majoca-top'>
+								Uniwersalna, wielofunkcyjna chusta z elastycznej, miękkiej dzianiny dla wymagających rodziców i ich
+maleństwa. Przydatna już od narodzin. Może pełnić rolę okrycia fotelika samochodowego, wózka
+dziecięcego, peleryny do karmienia piersią, kocyka, pokrowca w huśtawce czy leżaczku. Przy
+starszaku świetnie sprawdzi się jako pokrowiec do krzesełka do karmienia podczas wyjścia do
+restauracji czy też w wózku sklepowym. Dzięki chuście twoje dziecko będzie miało czyste rączki.
+Do każdej chusty dołączamy woreczek do jej przechowywania.
+							</div>
 							<ul class="about-majoca">
 								<li><span class="dot"></span>Posiada właściwości termoregulacyjne</li>
 								<li><span class="dot"></span>Chroni przed chłodem, a nie przegrzewa w upały</li>
@@ -259,6 +292,17 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 					<div class="col-lg-5">
 						<div class="bg-image"></div>
 						<div class="bg-ping">
+							<div class='product-text'>
+								Chusta jest wyjątkowa pod wieloma względami:
+								<ul>
+									<li> ma właściwości termoregulacyjne, chroni przed chłodem a nie przegrzewa w upały. Jest przewiewna i oddychająca.</li>
+									<li>dobrze absorbuje wilgoć</li>
+									<li>idealnie okrywa</li>
+									<li>jest elastyczna, dopasowuje się do każdego kształtu</li>
+									
+								</ul>
+								
+							</div>
 							<div class="product-value">
 								<div class="col-lg-12 my-auto">
 									<div class="container-fluid">
@@ -293,6 +337,7 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 									</div>
 								</div>
 							</div>
+						
 						</div>
 					</div>
 				</div>
@@ -347,6 +392,23 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 			</div>
 		</section>
 		<section  id="kontakt"></section>
+		<div class='majoca-bot container'>
+			Dbamy o wysoką jakość naszych produktów. Korzystamy tylko z najwyższej jakości bezpiecznych polskich certyfikowanych dzianin. Nasze produkty wykonywane są ręcznie z największą starannością w Polsce.
+		</div>
+		<div class='zamow'>
+			<div class='container d-flex align-items-start justify-content-end'>
+				<div class='box'>
+					<div class='title'>
+						Wyślij na prezent
+					</div>
+					<div class='text'>
+						Chcesz zrobić komuś prezent? Chusta będzie doskonałym pomysłem. Nasze chusty pakujemy w pergamin w eleganckim białym pudełku przewiązanym delikatną wstążeczką.
+					</div>
+					
+				</div>
+			</div>
+			
+		</div>
 		<section class="cta">
 			<div class="cta-content">
 				<div class="contact-info ml-auto">
@@ -373,13 +435,19 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 				<p><i class="pl"></i>Produkt polski</p>
 			</div>
 			<div class="copy">
-				<div class="container  d-flex flex-wrap">
-					<div class="mr-auto">
-						<p>&copy; MaJoCa 2018 Joanna Grzyb</p>
-					</div>
-					<div class="ml-auto">
-						<p>Projekt i realizacja: <a href="http://www.scepter.pl">Scepter Agencja interaktywna</a></p>
-					</div>
+				<div class="container flex-wrap d-flex align-items-center justify-content-between">
+					<p>
+						&copy; MaJoCa 2018
+					</p>
+					<p class=''>
+						Wszystkie grafiki są własnością majoca.pl. Wszelkie prawa zastrzeżone.
+					</p>
+					<p>
+						Projekt i realizacja:
+						<a href="http://www.scepter.pl">
+							Scepter Agencja interaktywna
+						</a>
+					</p>
 				</div>
 			</div>
 		</footer>
@@ -394,12 +462,14 @@ Wiadomość wygenerowana automatycznie na stronie %s',
 		<script src="js/TweenLite.min.js"></script>
 		<script src="js/TimelineLite.min.js"></script>
 		<script src="js/jquery.touchSwipe.min.js"></script>
-		<script src="js/slider.min.js"></script>
-		<script src="js/popup.min.js"></script>
-		<script src="js/notify.min.js"></script>
+		<script src="<?php printf( 'js/slider%s.js%s', $infix, $buster ); ?>"></script>
+		<script src="<?php printf( 'js/popup%s.js%s', $infix, $buster ); ?>"></script>
+		<script src="<?php printf( 'js/notify%s.js%s', $infix, $buster ); ?>"></script>
+		<?php if( DMODE ): ?>
 		<!--
 			<?php echo URL . PHP_EOL; ?>
 			<?php echo URI . PHP_EOL; ?>
-			-->
+		-->
+		<?php endif; ?>
 	</body>
 </html>

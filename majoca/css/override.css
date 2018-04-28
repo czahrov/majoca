@@ -5,6 +5,7 @@
 
 #page-top #zamow #slider {
   position: relative;
+  padding: 0;
   z-index: 50; }
   #page-top #zamow #slider .circle-white {
     margin: 0;
@@ -30,6 +31,18 @@
       background-position: center;
       background-size: contain;
       background-repeat: no-repeat; }
+      #page-top #zamow #slider .view .product-img .name {
+        /* display: none; */
+        padding: 5% 30%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #ffa0a2;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 20px; }
   #page-top #zamow #slider .nav {
     position: absolute;
     width: 180px;
@@ -79,7 +92,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 50px 20px;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1100; }
   #popup .box {
@@ -88,7 +100,10 @@
     padding: 20px;
     width: 100%;
     max-width: 1200px;
-    background-color: #fff; }
+    background-color: #fff;
+    max-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto; }
     #popup .box .bold {
       font-size: 28px; }
     #popup .box .close {
@@ -115,35 +130,43 @@
       -webkit-box-direction: normal;
           -ms-flex-direction: column;
               flex-direction: column; }
-    #popup .box .body {
-      margin-top: 50px;
-      max-height: 50vh;
-      overflow-x: hidden;
-      overflow-y: auto; }
-      #popup .box .body #form {
-        margin: 0 -14px; }
-        #popup .box .body #form input,
-        #popup .box .body #form select {
-          padding: 0 18px;
-          margin: 14px;
-          width: 200px;
-          height: 40px;
-          border: solid 3px #ffd3d4; }
-        #popup .box .body #form .bold {
-          padding: 0 14px;
-          margin: 14px 0; }
-        #popup .box .body #form button.bold {
-          width: calc( 100% - 28px );
-          height: 40px;
-          margin: 50px 14px 0;
-          text-transform: uppercase;
-          background-color: #ffd3d4;
-          border: none;
-          font-size: 20px; }
-        #popup .box .body #form .description {
-          margin: 0 14px; }
-          #popup .box .body #form .description::before {
-            content: 'Skład: '; }
+    #popup .box .body #form {
+      margin: 0 -14px; }
+      #popup .box .body #form input,
+      #popup .box .body #form select,
+      #popup .box .body #form textarea {
+        padding: 0 18px;
+        margin: 0 14px 14px;
+        width: 200px;
+        height: 40px;
+        border: solid 3px #ffd3d4; }
+        @media (min-width: 768px) {
+          #popup .box .body #form input,
+          #popup .box .body #form select,
+          #popup .box .body #form textarea {
+            margin: 14px; } }
+      #popup .box .body #form textarea {
+        width: calc( 100% - 60px );
+        max-width: 900px;
+        height: 100px; }
+      #popup .box .body #form .bold {
+        padding: 0 14px;
+        margin: 14px 0; }
+      #popup .box .body #form button.bold {
+        width: calc( 100% - 28px );
+        height: 40px;
+        margin: 50px 14px 0;
+        text-transform: uppercase;
+        background-color: #ffd3d4;
+        border: none;
+        font-size: 20px; }
+      #popup .box .body #form .description {
+        margin: 0 14px; }
+        #popup .box .body #form .description::before {
+          content: 'Skład: '; }
+    @media (min-width: 768px) {
+      #popup .box .body {
+        margin-top: 50px; } }
     @media (min-width: 768px) {
       #popup .box {
         padding: 20px 40px; } }
@@ -155,6 +178,9 @@
         padding: 80px; } }
   #popup:not(.open) {
     display: none; }
+  @media (min-width: 768px) {
+    #popup {
+      padding: 50px 20px; } }
 
 #notify {
   position: fixed;
@@ -170,5 +196,50 @@
     background-color: green; }
   #notify.err {
     background-color: red; }
+
+#o-produkcie .header-content .majoca-top {
+  padding: 20px 0;
+  line-height: 30px; }
+#o-produkcie .product-text {
+  padding: 20px 50px;
+  color: #fff;
+  font-size: 20px; }
+
+.majoca-bot {
+  padding-top: 20px;
+  padding-bottom: 100px;
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center; }
+
+.zamow {
+  min-height: calc( 100vh - 60px );
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-position: left top;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-image: url("../img/majoca-paczka.png");
+  padding-top: 50px;
+  padding-bottom: 50px; }
+  .zamow .box {
+    padding: 10px;
+    max-width: 550px;
+    color: #2e2e30;
+    text-align: right;
+    background-color: rgba(255, 255, 255, 0.5); }
+    .zamow .box .title {
+      margin-bottom: 40px;
+      font-size: 50px;
+      font-weight: 900; }
+    .zamow .box .text {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 34px; }
+
+.slogan {
+  padding: 50px;
+  text-align: center;
+  font-size: 40px; }
 
 /*# sourceMappingURL=override.css.map */

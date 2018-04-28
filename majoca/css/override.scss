@@ -1,8 +1,7 @@
 $kolory:(
 	rozowy: #ffd3d4
-	
 );
-
+	
 .bold{
 	font:{
 		family: 'Raleway', 'Helvetica', 'Arial', 'sans-serif';
@@ -21,6 +20,7 @@ $kolory:(
 		#slider
 		{
 			position: relative;
+			padding: 0;
 			z-index: 50;
 			
 			.circle-white{
@@ -54,6 +54,21 @@ $kolory:(
 						size: contain;
 						repeat: no-repeat;
 					};
+					
+					.name{
+						/* display: none; */
+						padding: 5% 30%;
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						right: 0;
+						background-color: darken( map-get( $kolory, rozowy ), 10% );
+						text-align: center;
+						color: #fff;
+						font-weight: bold;
+						font-size: 20px;
+						
+					}
 					
 				}
 				
@@ -134,7 +149,6 @@ $kolory:(
 	right: 0;
 	bottom: 0;
 	display: flex;
-	padding: 50px 20px;
 	background-color: rgba( 0,0,0,0.7 );
 	z-index: 1100;
 	
@@ -145,6 +159,11 @@ $kolory:(
 		width: 100%;
 		max-width: 1200px;
 		background-color: #fff;
+		max-height: 100vh;
+		overflow:{
+			x: hidden;
+			y: auto;
+		};
 		
 		.bold{
 			font-size: 28px;
@@ -171,24 +190,31 @@ $kolory:(
 		}
 		
 		.body{
-			margin-top: 50px;
-			max-height: 50vh;
-			overflow:{
-				x: hidden;
-				y: auto;
-			};
 			
 			#form
 			{
 				margin: 0 -14px;
 				
 				input,
-				select{
+				select,
+				textarea{
 					padding: 0 18px;
-					margin: 14px;
+					margin: 0 14px 14px;
 					width: 200px;
 					height: 40px;
 					border: solid 3px map-get( $kolory, rozowy );
+					
+					@media( min-width: 768px ){
+						margin: 14px;
+						
+					}
+					
+				}
+				
+				textarea{
+					width: calc( 100% - 60px );
+					max-width: 900px;
+					height: 100px;
 					
 				}
 				
@@ -221,6 +247,11 @@ $kolory:(
 				
 			}
 			
+			@media( min-width: 768px ){
+				margin-top: 50px;
+				
+			}
+			
 		}
 		
 		@media(min-width: 768px){
@@ -242,6 +273,11 @@ $kolory:(
 	
 	&:not(.open){
 		display: none;
+		
+	}
+	
+	@media( min-width: 768px ){
+		padding: 50px 20px;
 		
 	}
 	
@@ -268,6 +304,94 @@ $kolory:(
 		background-color: red;
 		
 	}
+	
+}
+
+#o-produkcie
+{
+	
+	.header-content{
+		
+		.majoca-top{
+			padding: 20px 0;
+			line-height: 30px;
+			
+		}
+		
+	}
+	
+	.product-text{
+		padding: 20px 50px;
+		color: #fff;
+		font-size: 20px;
+		
+	}
+	
+}
+
+.majoca-bot{
+	padding:{
+		top: 20px;
+		bottom: 100px;
+		
+	};
+	line-height: 50px;
+	font-size: 20px;
+	text-align: center;
+
+}	
+
+.zamow{
+	min-height: calc( 100vh - 60px );
+	padding:{
+		top: 50px;
+		bottom: 50px;
+	};
+	
+	
+	background:{
+		position: left top;
+		size: auto 100%;
+		repeat: no-repeat;
+		image: url( '../img/majoca-paczka.png' );
+		
+	};
+	
+	padding:{
+		top: 50px;
+		bottom: 50px;
+		
+	};
+	
+	.box{
+		padding: 10px;
+		max-width: 550px;
+		color: #2e2e30;
+		text-align: right;
+		background-color: rgba( 255, 255, 255, 0.5 );
+		
+		.title{
+			margin-bottom: 40px;
+			font-size: 50px;
+			font-weight: 900;
+			
+		}
+		
+		.text{
+			font-size: 18px;
+			font-weight: 400;
+			line-height: 34px;
+			
+		}
+		
+	}
+	
+}
+
+.slogan{
+	padding: 50px;
+	text-align: center;
+	font-size: 40px;
 	
 }
 
